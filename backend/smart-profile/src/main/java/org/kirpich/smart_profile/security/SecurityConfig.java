@@ -71,6 +71,10 @@ public class SecurityConfig {
                             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
                         })
                 )
+                .authorizeHttpRequests(r -> r
+                        .requestMatchers(
+                                "/h2-console/**"
+                        ).permitAll())
                 .anonymous(AbstractHttpConfigurer::disable)
                 .sessionManagement(m ->
                         m.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
