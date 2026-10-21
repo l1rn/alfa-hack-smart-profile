@@ -14,6 +14,7 @@ import java.util.Base64;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.Date;
+import java.util.function.Function;
 
 @Slf4j
 @Service
@@ -34,6 +35,15 @@ public class JwtService {
                 .expiration(new Date(System.currentTimeMillis() + accessExp))
                 .signWith(getSigningKey())
                 .compact();
+    }
+
+    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver){
+        final Claims claims = extractAllClaims(token);
+        return claimsResolver.apply(claims);
+    }
+
+    public String getUsernameFromToken(String token){
+        return extractClaim(token, Claims::getSubject);
     }
 
     public Claims extractAllClaims(String token){
