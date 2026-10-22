@@ -19,4 +19,4 @@ spring:
 
 jwt:
   token: 3rmov7NEuQcX62nkiy1ZymCTCmu166hRkxLyJuw8dnd
-  access-exp: 36000
+  access-exp: 3600000

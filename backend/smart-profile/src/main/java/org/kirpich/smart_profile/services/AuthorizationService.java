@@ -41,7 +41,7 @@ public class AuthorizationService {
     }
 
     @Transactional
-    public void signIn(AuthorizationRequest r) throws CredentialNotFoundException{
+    public String signIn(AuthorizationRequest r) throws CredentialNotFoundException{
         User user = userRepository.findByEmail(r.getEmail())
                 .orElseThrow(() -> new CredentialNotFoundException("email или пароль неверны"));
         if(!passwordEncoder.matches(user.getPassword(), r.getPassword())){
@@ -55,6 +55,6 @@ public class AuthorizationService {
                 )
         );
 
-        jwtService.generateAccessToken(user);
+        return jwtService.generateAccessToken(user);
     }
 }
