@@ -1,17 +1,15 @@
 package org.kirpich.smart_profile.models;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "companies")
 @Getter
 @Setter
 @Builder
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

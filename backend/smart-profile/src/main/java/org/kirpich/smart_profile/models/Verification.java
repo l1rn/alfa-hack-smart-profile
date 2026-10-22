@@ -1,10 +1,7 @@
 package org.kirpich.smart_profile.models;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.kirpich.smart_profile.enums.BkiStatus;
 import org.kirpich.smart_profile.enums.EgrulStatus;
 import org.kirpich.smart_profile.enums.FinalVerdict;
@@ -16,7 +13,8 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Builder
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class Verification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

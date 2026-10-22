@@ -2,6 +2,7 @@ package org.kirpich.smart_profile.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.kirpich.smart_profile.enums.UserRole;
 
 import java.math.BigDecimal;
@@ -11,7 +12,7 @@ import java.math.BigDecimal;
 @Setter
 @Table(name = "users")
 @ToString(exclude = "password")
-@Builder
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {

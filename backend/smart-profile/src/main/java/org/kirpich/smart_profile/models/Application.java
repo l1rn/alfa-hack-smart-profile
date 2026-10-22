@@ -1,10 +1,8 @@
 package org.kirpich.smart_profile.models;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.kirpich.smart_profile.enums.ApplicationStatus;
 
 
@@ -13,7 +11,8 @@ import org.kirpich.smart_profile.enums.ApplicationStatus;
 @Getter
 @Setter
 @Builder
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class Application {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
