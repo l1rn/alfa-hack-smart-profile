@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CreditProductService {
     private final CreditProductRepository creditProductRepository;
+
     public void createCreditProduct(CreditProductRequest request){
         CreditProduct creditProduct = CreditProduct.builder()
                 .title(request.getTitle())
