@@ -7,6 +7,8 @@ import org.kirpich.smart_profile.enums.UserRole;
 import org.kirpich.smart_profile.models.User;
 import org.kirpich.smart_profile.repositories.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -42,18 +44,21 @@ public class AuthorizationService {
 
     @Transactional
     public String signIn(AuthorizationRequest r) throws CredentialNotFoundException{
-        User user = userRepository.findByEmail(r.getEmail())
-                .orElseThrow(() -> new CredentialNotFoundException("email или пароль неверны"));
-        if(!passwordEncoder.matches(user.getPassword(), r.getPassword())){
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(r.getEmail(), r.getPassword())
+            );
+        } catch (BadCredentialsException | DisabledException e) {
             throw new CredentialNotFoundException("email или пароль неверны");
         }
 
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        r.getEmail(),
-                        r.getPassword()
-                )
-        );
+        User user = userRepository.findByEmail(r.getEmail())
+                .orElseThrow(() -> new CredentialNotFoundException("email или пароль неверны"));
+        if(!passwordEncoder.matches(r.getPassword(), user.getPassword())){
+            throw new CredentialNotFoundException("email или пароль неверны");
+        }
+
+
 
         return jwtService.generateAccessToken(user);
     }
