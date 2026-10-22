@@ -21,7 +21,7 @@ public class CreditProduct {
     private String title;
     private Long minAmount;
     private Long maxAmount;
-    private LocalDateTime minTermMonths;
-    private LocalDateTime maxTermMonths;
+    private Integer minTermMonths;
+    private Integer maxTermMonths;
     private Double interestRate;
 }

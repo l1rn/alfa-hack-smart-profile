@@ -11,6 +11,8 @@ import java.math.BigDecimal;
 @Setter
 @Table(name = "users")
 @ToString(exclude = "password")
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class User {
     @Id

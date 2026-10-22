@@ -74,8 +74,9 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(r -> r
                         .requestMatchers(
-                                "/h2-console/**"
-                        ).permitAll())
+                                "/h2-console/**",
+                                "/api/auth/**"
+                        ).permitAll().anyRequest().authenticated())
                 .anonymous(AbstractHttpConfigurer::disable)
                 .sessionManagement(m ->
                         m.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

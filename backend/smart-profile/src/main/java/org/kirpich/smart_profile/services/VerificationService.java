@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class VerificationService {
-    @Autowired
     private final VerificationRepository verificationRepository;
 
     private BkiStatus creditHistoryCheck(){

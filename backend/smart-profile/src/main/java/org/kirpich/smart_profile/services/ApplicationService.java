@@ -15,13 +15,12 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ApplicationService {
-    @Autowired
     private final ApplicationRepository applicationRepository;
     public void createApplication(Application application){
 
     }
 
-    lpublic PaginatedResponse<ApplicationResponse> getApplicationList(Pageable p){
+    public PaginatedResponse<ApplicationResponse> getApplicationList(Pageable p){
         Page<Application> applications = applicationRepository.findAllPageable(p);
 
         List<ApplicationResponse> content = applications.stream()

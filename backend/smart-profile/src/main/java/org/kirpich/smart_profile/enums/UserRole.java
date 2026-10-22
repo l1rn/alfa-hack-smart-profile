@@ -1,6 +1,7 @@
 package org.kirpich.smart_profile.enums;
 
 public enum UserRole {
-    DIRECTOR,
-    ACCOUNTANT
+    CLIENT,
+    MANAGER,
+    ADMIN
 }
