@@ -1,8 +1,8 @@
 package org.kirpich.smart_profile.services;
 import lombok.RequiredArgsConstructor;
+import org.jspecify.annotations.NonNull;
 import org.kirpich.smart_profile.models.User;
 import org.kirpich.smart_profile.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -16,7 +16,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     @Transactional(readOnly = true)
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(@NonNull String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("Email not found: " + email));
         return org.springframework.security.core.userdetails.User.builder()

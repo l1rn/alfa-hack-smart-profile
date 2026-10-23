@@ -1,11 +1,9 @@
-package org.kirpich.smart_profile.dto;
+package org.kirpich.smart_profile.dto.credit_products;
 
 import lombok.Data;
 
-import java.time.LocalDateTime;
-
 @Data
-public class CreditProductRequest {
+public class CreateCreditProductRequest {
     private String title;
     private Long minAmount;
     private Long maxAmount;

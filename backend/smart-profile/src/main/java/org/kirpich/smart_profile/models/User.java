@@ -4,8 +4,14 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.kirpich.smart_profile.enums.UserRole;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Getter
@@ -13,8 +19,7 @@ import java.math.BigDecimal;
 @Table(name = "users")
 @ToString(exclude = "password")
 @SuperBuilder
-@AllArgsConstructor
-@NoArgsConstructor
+@AllArgsConstructor @NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
